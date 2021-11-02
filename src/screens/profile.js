@@ -12,40 +12,43 @@ class Profile extends Component{
     console.log(this.props.userData);
     return(
       <View style={styles.container}>
-        <Text>Profile</Text>
-        <Text>email: {this.props.userData.email}</Text>
-        
-      </View>
-      
+          <Text style={styles.welcome}> Bienvenido: {this.props.userData.email}</Text>
+          <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
+          <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
+          <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
+            <Text style={styles.touchableText}>Logout</Text>
+          </TouchableOpacity>         
+      </View>       
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container:{
-    paddingHorizontal:10,
-  },
-  formContainer:{
-    backgroundColor: '#ccc',
-    marginHorizontal: 10,
-    padding:10,
-  },
-  field:{
-    borderColor: '#444',
-    borderWidth:1,
-    borderStyle: 'solid',
-    height: 20,
-    paddingHorizontal: 20,
-    paddingVertical:10
-  },
-  image:{
-    height: 250,
-  },
-  touchable:{
-    backgroundColor: '#ccc',
-    borderRadius:4,
-    marginVertical:10,
-  }
-})
+    container:{
+        marginTop: 20,
+        marginHorizontal:10
+    },
+    welcome:{
+        fontSize:18,
+        marginTop:20,
+        marginBottom:30,
+        fontWeight: 'bold'
+    },
+    element:{
+        marginBottom:10,
+    },
+    touchable:{
+        padding: 10,
+        backgroundColor: '#dc3545',
+        marginTop: 30,
+        borderRadius: 4,
+    },
+    touchableText:{
+        fontWeight: 'bold',
+        color:'#fff',
+        textAlign: 'center'
+    }
+    
+});
 
 export default Profile;

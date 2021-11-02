@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import { db, auth } from '../firebase/config'
+import { db, auth } from '../firebase/config';
+import Post from '../components/Post';
 
 
 class Home extends Component{
@@ -11,7 +12,7 @@ class Home extends Component{
     }
   }
   componentDidMount(){
-    console.log('En didMount');
+    console.log('En didMount de Home');
     db.collection('posts').onSnapshot(
       docs => {
         console.log(docs);
@@ -19,7 +20,7 @@ class Home extends Component{
         let posts = [];
         docs.forEach( doc => {
           posts.push({
-            id: doc.id,
+            id: doc.id,   
             data: doc.data(),
           })
         })
@@ -38,7 +39,7 @@ class Home extends Component{
         <FlatList 
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Text>{item.data.texto}</Text>}
+          renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
         />
       </View>
       )

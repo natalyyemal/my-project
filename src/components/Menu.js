@@ -22,11 +22,11 @@ class Menu extends Component{
     
     componentDidMount(){
         auth.onAuthStateChanged(user => {
-            if (user){
-            this.setState({
-                loggedIn:true,
-                user: user,
-            })
+            if(user){
+                this.setState({
+                    loggedIn:true,
+                    user: user,
+                })
             }
         })
     }
@@ -60,7 +60,6 @@ class Menu extends Component{
                 })
             })
             .catch()
-        
     }
 
     render(){
@@ -76,8 +75,7 @@ class Menu extends Component{
                 <Drawer.Navigator>
                      <Drawer.Screen name="Home" component={()=><Home />} />
                      <Drawer.Screen name ="New Post" component={(drawerProps)=><PostForm drawerProps={drawerProps}/>}/>
-                     <Drawer.Screen name="Perfil" component={()=><Perfil userData={this.state.user} logout={()=>this.logout() } />} />
-                        
+                      <Drawer.Screen name="Perfil" component={()=><Perfil userData={this.state.user} logout={()=>this.logout() } />} />
                 </Drawer.Navigator>
             }
             </NavigationContainer>
@@ -86,4 +84,4 @@ class Menu extends Component{
 
 }
 
-export default Menu
+export default Menu;

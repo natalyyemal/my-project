@@ -17,7 +17,7 @@ class PostForm extends Component{
             texto: this.state.textoPost,
             createdAt: Date.now(),
         })
-        .then( ()=>{
+        .then( ()=>{ //Limpiar el form de carga
             this.setState({
                 textoPost:'',
             })
