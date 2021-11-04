@@ -39,7 +39,7 @@ class Home extends Component{
         <FlatList 
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
+          renderItem = { ({item}) => <Post postData={item} />} // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
         />
       </View>
       )

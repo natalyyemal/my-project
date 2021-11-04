@@ -39,15 +39,12 @@ class Post extends Component{
         })
     }
     quitarLike(){
-        //Quitar mi usuario a un array de usuario que likearon.
-            //Updatear el registro (documento)
         db.collection('posts').doc(this.props.postData.id).update({
             likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
         .then(()=>{
             this.setState({
                 likes:this.props.postData.data.likes.length,
-                //likes:this.state.likes + 1, //Opción más rápida de respuesta
                 myLike: false,
             })
         })
@@ -76,12 +73,6 @@ class Post extends Component{
            comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
 
-        //Armar el comentario que vamos a guardar.  
-            //Conseguir el estado
-
-        //Guardarlo en un colección: modifacer un documento
-
-        //limpiar el estado
     }
 
     render(){
