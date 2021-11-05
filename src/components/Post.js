@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
+import { FlatList } from 'react-native-gesture-handler';
 
 class Post extends Component{
     constructor(props){
@@ -62,21 +63,25 @@ class Post extends Component{
     }
 
     guardarComentario(){
-        console.log('Guardadno comentario...');
+        console.log('Guardando comentario...');
         let oneComment = {
             createdAt: Date.now(),
             author: auth.currentUser.email,
             comment: this.state.comment, 
         }
-        //identifacar el documento que queremos modificar.
          db.collection('posts').doc(this.props.postData.id).update({
            comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
+        .then(()=>{
+            this.setState({
+                showModal:false,
+                comment:''
+            })
+        }
+        )
 
     }
-
     render(){
-        console.log(this.props);
         return(
             <View style={styles.contanier}>
              <Text>Texto del post: {this.props.postData.data.texto}</Text>
@@ -99,26 +104,38 @@ class Post extends Component{
 
             {/* Modal para comentarios */}
             {   this.state.showModal ?
-                <Modal
+                <Modal style={styles.modalContainer}
                     visible={this.state.showModal}
                     animationType='slide'
                     transparent={false}
                 >   
                     <TouchableOpacity onPress={()=>this.hideModal()}>
-                        <Text>X</Text>
+                        <Text style={styles.closeButton}>X</Text>
                     </TouchableOpacity> 
-                    <Text>Dentro del modal</Text>
+
+                    <FlatList
+                        data={this.props.postData.data.comments}
+                        keyExtractor={comment=>comment.createdAt.toString()}
+                        renderItem={({item})=>(
+                                <Text>{item.author}: {item.comment}</Text> 
+                        )}
+
+                    />
 
                     {/* Formulario para nuevo comentarios */}
                     <View>
-                        <TextInput placeholder="Comentar..."
+                        <TextInput 
+                            style={styles.input}
+                        placeholder="Comentar..."
                             keyboardType="default"
                             multiline
                             onChangeText={text => this.setState({comment: text})}
                             value={this.state.comment}
                         />
-                        <TouchableOpacity onPress={()=>{this.guardarComentario()}}>
-                            <Text>Guadar comentario</Text>
+                        <TouchableOpacity 
+                        style={styles.button}
+                        onPress={()=>{this.guardarComentario()}}>
+                            <Text style={styles.textButton}>Guadar comentario</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -141,7 +158,50 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         borderWidth: 1,
         padding: 10,
+    },
+    modalContainer:{
+        width:'97%',
+        borderRadius:4,
+        padding:5,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        boxShadow: 'rgb(204 204 204 ) 0px 0px 9px 7px #ccc',
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    closeButton:{
+        color:'#fff',
+        padding:5,
+        backgroundColor:'#dc3545',
+        alignSelf:'flex-end',
+        borderRadius:4,
+        paddingHorizontal: 8,
+    },
+    input:{
+        height:40,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        borderWidth:1,
+        borderColor: '#ccc',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical:10,
+    },
+    button:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
+    },
+    textButton:{
+        color: '#fff'
     }
+
 })
 
 export default Post
