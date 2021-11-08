@@ -15,7 +15,7 @@ class MyCamera extends Component {
     }
 
      componentDidMount(){
-         Camera.requestCameraPermissionAsync()
+        Camera.requestCameraPermissionsAsync()
           .then(() =>{
               this.setState({
                 permission: true,
@@ -24,13 +24,12 @@ class MyCamera extends Component {
         .catch((err)=> console.log(err));
         
 
-    Camera.getAvailableCameraTypesAsync().then((res)=> console.log(res));
-        }
+    // Camera.getAvailableCameraTypesAsync().then((res)=> console.log(res));
+    }   
 
     takePicture() {
         //cuando se ejecuta este metodo devuelve una promesa
-        this.camera
-        .takePictureAsync()
+        this.camera.takePictureAsync()
             .then((photo) => {
                 console.log(photo);
                 this.setState({
@@ -42,23 +41,17 @@ class MyCamera extends Component {
     }
 
     savePhoto() {
-
+        //console.log("guardar foto en firebase");
         fetch(this.state.photo)
             .then((res) => res.blob())
             .then((image) => {
-                const ref = storage.ref(`photos/${Date.now()}.jpg`)
-                ref.put(image)
-                    .then(() => {
-                        ref.getDownloadURL()
-                            .then((url) => {
-                                this.props.onImageUpload(url)
-                                this.setState({
-                                    photo: "",
-                                })
-                            });
-                    })
+                const ref = storage.ref(`photos/${Date.now()}.jpg`);
+                ref.put(image).then(() => {
+                    ref.getDownloadURL()
+                            .then((url) => console.log("guardar imagenn en la base de datos"));
+                });
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
 render() {
@@ -84,7 +77,7 @@ render() {
                         <Camera
                             style={{ flex: 1, width: "100%" }}
                             type={Camera.Constants.Type.front}
-                            ref={(cam) => (this.camera = cam)}
+                            ref={(cam) => this.camera = cam}
                         />
                         <TouchableOpacity onPress={() => this.takePicture()}>
                             <Text>Shoot</Text>
