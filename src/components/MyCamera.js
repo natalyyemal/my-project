@@ -42,19 +42,23 @@ class MyCamera extends Component {
     }
 
     savePhoto() {
-        //console.log("guardar foto en firebase");
+
         fetch(this.state.photo)
             .then((res) => res.blob())
             .then((image) => {
-                const ref = storage.ref(`photos/${Date.now()}.jpg`);
-
-                ref.put(image).then(() => {
-                    ref
-                        .getDownloadURL()
-                        .then((url) => console.log("guardar imagenn en la base de datos"));
-                });
+                const ref = storage.ref(`photos/${Date.now()}.jpg`)
+                ref.put(image)
+                    .then(() => {
+                        ref.getDownloadURL()
+                            .then((url) => {
+                                this.props.onImageUpload(url)
+                                this.setState({
+                                    photo: "",
+                                })
+                            });
+                    })
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
     }
 
 render() {
