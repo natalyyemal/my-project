@@ -48,7 +48,12 @@ class MyCamera extends Component {
                 const ref = storage.ref(`photos/${Date.now()}.jpg`);
                 ref.put(image).then(() => {
                     ref.getDownloadURL()
-                            .then((url) => console.log("guardar imagenn en la base de datos"));
+                    .then((url) => {
+                        this.props.onImageUpload(url)
+                        this.setState({
+                            photo: "",
+                        })
+                    });
                 });
             })
             .catch((err) => console.log(err));
