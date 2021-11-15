@@ -83,8 +83,8 @@ class Post extends Component{
     }
     render(){
         return(
-        
             <View style={styles.contanier}>
+            {/* <Image style={styles.foto} source={{ uri: "https://img.icons8.com/material-outlined/24/000000/hearts.png" }} /> */}
              <Text>Texto del post: {this.props.postData.data.texto}</Text>
              <Text>user: {this.props.postData.data.owner} </Text>  
             <Text>Likes: {this.state.likes} </Text>  
