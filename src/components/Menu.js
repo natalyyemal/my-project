@@ -8,6 +8,7 @@ import Login from '../screens/login';
 import Perfil from '../screens/profile';
 import PostForm from '../screens/postForm';
 import { auth } from '../firebase/config';
+import { Text } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
@@ -37,7 +38,9 @@ class Menu extends Component{
                 console.log('Registrado');
             })
             .catch( error => {
+                // <Text>Esta mal: {error} </Text>
                 console.log(error);
+
             })
     }
     login(email,pass){

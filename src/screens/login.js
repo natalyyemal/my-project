@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
+        // backgroundColor:'#28a745'
     },
     button:{
         backgroundColor:'#28a745',
