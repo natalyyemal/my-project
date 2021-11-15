@@ -17,7 +17,9 @@ class Menu extends Component{
         super();
         this.state = {
             loggedIn:false,
-            user:''
+            user:'',
+            mensajeError: '',
+            codigoError:'',
         }
     }
     
@@ -40,6 +42,10 @@ class Menu extends Component{
             .catch( error => {
                 // <Text>Esta mal: {error} </Text>
                 console.log(error);
+                this.setState({
+                    mensajeError: error.mensaje,
+                    codigoError: error.codigo,
+                })
 
             })
     }
