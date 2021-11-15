@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
@@ -82,9 +82,10 @@ class Post extends Component{
 
     }
     render(){
+        console.log(this.props.postData);
         return(
             <View style={styles.contanier}>
-            {/* <Image style={styles.foto} source={{ uri: "https://img.icons8.com/material-outlined/24/000000/hearts.png" }} /> */}
+                <Image source={{uri:this.props.postData.data.photo}} style={styles.image}/>
              <Text>Texto del post: {this.props.postData.data.texto}</Text>
              <Text>user: {this.props.postData.data.owner} </Text>  
             <Text>Likes: {this.state.likes} </Text>  
@@ -201,6 +202,12 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
+    },
+    image:{
+        width: '100%',
+        height: 200,
+        borderRadius: 4,
+        marginBottom: 10,
     }
 
 })
