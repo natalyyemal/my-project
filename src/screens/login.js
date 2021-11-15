@@ -65,8 +65,12 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
-    }
-
+    },
+    error:{
+        marginBottom: 10,
+        color: "#dc3545",
+        fontSize: 12
+    },
 })
 
 export default Login;

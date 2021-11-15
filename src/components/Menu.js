@@ -13,8 +13,8 @@ import { Text } from 'react-native';
 const Drawer = createDrawerNavigator();
 
 class Menu extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             loggedIn:false,
             user:'',
@@ -43,8 +43,8 @@ class Menu extends Component{
                 // <Text>Esta mal: {error} </Text>
                 console.log(error);
                 this.setState({
-                    mensajeError: error.mensaje,
-                    codigoError: error.codigo,
+                    mensajeError: error.message,
+                    codigoError: error.code,
                 })
 
             })
@@ -77,7 +77,7 @@ class Menu extends Component{
             <NavigationContainer>
             {this.state.loggedIn == false ?
                 <Drawer.Navigator>
-                    <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} />} />
+                    <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} error= {this.state.mensajeError} />} />
                    
                     <Drawer.Screen name="Login" component={()=><Login login={(email, pass)=>this.login(email, pass)} />}/>
                 </Drawer.Navigator> :

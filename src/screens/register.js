@@ -39,7 +39,7 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                <Text style={styles.error}>{this.props.mensajeError}</Text>
+                <Text style={styles.error}>{this.props.error}</Text>
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)} >
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
@@ -75,8 +75,12 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
-    }
-
+    },
+    error:{
+        marginBottom: 10,
+        color: "#dc3545",
+        fontSize: 12
+    },
 })
 
 export default Register;
