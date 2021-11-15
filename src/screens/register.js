@@ -40,8 +40,11 @@ class Register extends Component{
                     secureTextEntry={true}
                 />
                 <Text style={styles.error}>{this.props.error}</Text>
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)} >
-                    <Text style={styles.textButton}>Registrarse</Text>    
+                <TouchableOpacity
+                    style={[styles.button, this.state.email && this.state.password && this.state.userName ? styles.buttonEnabled : styles.buttonDisabled]}
+                    onPress={() => this.props.register(this.state.email, this.state.password, this.state.username)}
+                >
+                    <Text style={styles.textButton}>Registrarse</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -80,6 +83,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: "#dc3545",
         fontSize: 12
+    },
+    buttonEnabled: {
+        backgroundColor: '#00ADB5',
+    },
+    buttonDisabled: {
+        backgroundColor: '#D3D3D3',
+        display: 'none',
     },
 })
 

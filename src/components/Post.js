@@ -83,6 +83,7 @@ class Post extends Component{
     }
     render(){
         return(
+        
             <View style={styles.contanier}>
              <Text>Texto del post: {this.props.postData.data.texto}</Text>
              <Text>user: {this.props.postData.data.owner} </Text>  
