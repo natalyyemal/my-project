@@ -37,7 +37,7 @@ class Profile extends Component{
 
   borrarPost= (id)=> {
     db.collection('posts').doc(id).delete();
-    this.showPost();
+    // this.showPost();
   }
 
   render(){
@@ -45,7 +45,7 @@ class Profile extends Component{
     return(
     <View style={styles.container}>
         <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
-        <Text>Tenes {this.state.posteos.length} Cantidad de posteos hechos:</Text>
+        {/* <Text>Tenes {this.state.posteos.length} Cantidad de posteos hechos:</Text> */}
 
 
      {this.state.posteos.length > 0 ? (  
@@ -54,15 +54,20 @@ class Profile extends Component{
           numColumns={2}
           horizontal={false}
           data= { this.state.posteos }
-          
-          keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />}
+
           // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
-          
+          renderItem = { ({item}) => <> <Post postData={item}/>
+        
+            <TouchableOpacity style={styles.touchable} onPress={()=>this.borrarPost(item.id)}>
+                <Text style={styles.touchableText}>Eliminar post</Text> 
+            </TouchableOpacity>
+          </> 
+          }
+          keyExtractor = { post => post.id} 
         />
-        </View>
+      </View>
      ):(
-      <Text style={styles.element}> Todavia no tienes posteos! </Text>
+      <Text>Tenes {this.state.posteos.length} posteos hechos:</Text>
      )}
 
 
