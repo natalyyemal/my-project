@@ -65,9 +65,7 @@ const styles = StyleSheet.create({
       flex: 1,
       marginTop: 40,
     },
-    containerGallery:{
-      flex: 1/2, 
-    },  
+
     welcome:{
         fontSize:18,
         marginTop:20,
