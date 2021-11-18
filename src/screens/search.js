@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import React from 'react'
+import React from 'react';
 import {View, Button, Text, TextInput, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 
 class Search extends Component{
