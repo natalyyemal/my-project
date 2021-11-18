@@ -43,7 +43,7 @@ class Profile extends Component{
   render(){
     console.log(this.state.posteos);
     return(
-      <View style={styles.container}>
+    <View style={styles.container}>
         <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
         <Text>Tenes {this.state.posteos.length} posteos hechos</Text>
 
@@ -58,18 +58,13 @@ class Profile extends Component{
           // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
           
         />
-<<<<<<< HEAD
-        
-
-=======
         </View>
->>>>>>> 83f4e23b842195f0f87f4c850f2f88e861caa4da
         <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
             <Text style={styles.touchableText}>Logout</Text> 
           </TouchableOpacity>
-      </View>       
+    </View>       
     )
   }
 }
