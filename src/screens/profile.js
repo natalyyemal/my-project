@@ -89,11 +89,19 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     image:{
+<<<<<<< HEAD
       flex: 1,
       padding: '0%',
       width: '100%',
       numColumns:3,
 
+=======
+      aspectRatio: 1/1,
+      borderRadius: 4,
+      marginBottom: 20,
+      paddingLeft: 10,
+      paddingRight: 10,
+>>>>>>> 5e965de7531c49cf0f65948bc790536998dae682
     }
     
 });
