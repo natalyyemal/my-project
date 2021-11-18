@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import React from 'react'
 import {View, Button, Text, TextInput, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {auth, db} from '../firebase/config';
+import Post from '../components/Post';
+
 
 class Search extends Component{
     constructor(props){
         super(props)
         this.state={
-            posteos: '',
+            posteos: [],
             search:'',
-        }
+        };
     }
 
     componentDidUpdate(){
         this.todosLosPosteos();
     }
+
     todosLosPosteos(){
-        db.collection ('posts'). where ('titile', '?=', this.state.search).onSnapshot(
+        db.collection ('posts'). where ('owner', '==', this.state.search).onSnapshot(
           docs => {
               let posts = [];
               docs.forEach( doc =>{
@@ -24,7 +27,7 @@ class Search extends Component{
                       data:doc.data()
                   })
                   this.setState({
-                      todosLosPosteos: posts,
+                      posteos: posts,
                   })
               })
           }  
@@ -38,25 +41,17 @@ class Search extends Component{
                 onChangeText={(text) => this.setState({search: text})}
                 placeholder="buscar"
                 keyboeardType="default"
-                multiline value= {this.state.search}
                />
-             <Button 
-             title="buscar"
-             onPress={() => this.todosLosPosteos}>
-
-             </Button>
-             <FlatList 
-             data={this.state.posteos}
-             keyExtractor={item => item.id.toString()}
-             renderItem= {({item}) => <Posteo data = {item}/>}
-             />
-
+            <FlatList
+                data={this.state.posteos}
+                keyExtractor={post => post.id}
+                renderItem={({item}) => <Post postData={item} />}
+            />
             </View>
         )
     }
 }
 
-export default Search
 
 const styles =StyleSheet.create({
     container: {
@@ -64,3 +59,5 @@ const styles =StyleSheet.create({
         backgroundColor: 'white',
     }
 })
+
+export default Search

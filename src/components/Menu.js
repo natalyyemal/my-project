@@ -11,9 +11,9 @@ import Register from '../screens/register';
 import Login from '../screens/login';
 import Perfil from '../screens/profile';
 import PostForm from '../screens/postForm';
+import Search from '../screens/search';
 import { auth } from '../firebase/config';
 import { Text, View } from 'react-native';
-import Search from '../screens/search';
 
 
 const Drawer = createDrawerNavigator();
