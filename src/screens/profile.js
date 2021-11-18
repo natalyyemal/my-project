@@ -45,8 +45,10 @@ class Profile extends Component{
     return(
     <View style={styles.container}>
         <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
-        <Text>Tenes {this.state.posteos.length} posteos hechos</Text>
+        <Text>Tenes {this.state.posteos.length} Cantidad de posteos hechos:</Text>
 
+
+     {this.state.posteos.length > 0 ? (  
        <View style={styles.ContainerGallery}>
         <FlatList 
           numColumns={2}
@@ -59,6 +61,12 @@ class Profile extends Component{
           
         />
         </View>
+     ):(
+      <Text style={styles.element}> Todavia no tienes posteos! </Text>
+     )}
+
+
+
         <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
