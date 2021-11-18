@@ -31,11 +31,15 @@ class Menu extends Component{
     
     componentDidMount(){ //para ver si esta logueado
         auth.onAuthStateChanged(user => { // para ver si esta logueado
-            if(user){
+            if(!user){
+                this.setState({
+                    loggedIn:false,
+                    user: user,
+                })
+            }else{
                 this.setState({
                     loggedIn:true,
                     user: user,
-                    loaded: true,
                 })
             }
         })

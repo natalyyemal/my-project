@@ -10,14 +10,6 @@ class Register extends Component{
             password:'',
         }
     }
-    
-    // Deprecado por inclusión de Firebase
-    // onSubmit(){
-    //     console.log(`El email ingresado es: ${this.state.email}`);
-    //     console.log(`El usuario ingresado es: ${this.state.userName}`);
-    //     console.log(`La contraseña ingresada es: ${this.state.password}`);
-    // }
-
     render(){
         return(
             <View style={styles.formContainer}>
@@ -36,6 +28,7 @@ class Register extends Component{
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='password'
+                    secureTextEntry={true}
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />

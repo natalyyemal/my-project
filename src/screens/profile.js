@@ -40,10 +40,15 @@ class Profile extends Component{
       <View style={styles.container}>
         <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
         <Text>Tenes {this.state.posteos.length} posteos hechos</Text>
-        <FlatList 
+        
+       
+        <FlatList style={styles.image}
+          numColumns={2}
+          horizontal={false}
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />} // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
+          renderItem = { ({item}) => <Post postData={item} />}
+          // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
         />
         <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
@@ -57,9 +62,12 @@ class Profile extends Component{
 
 const styles = StyleSheet.create({
     container:{
-        marginTop: 20,
-        marginHorizontal:10
+      flex: 1,
+      marginTop: 40,
     },
+    containerGallery:{
+      flex: 1/2, 
+    },  
     welcome:{
         fontSize:18,
         marginTop:20,
@@ -79,6 +87,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color:'#fff',
         textAlign: 'center'
+    },
+    image:{
+      flex: 1,
+      padding: '0%',
+      width: '100%',
+      numColumns:3,
+
     }
     
 });
