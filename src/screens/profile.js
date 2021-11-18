@@ -52,10 +52,14 @@ class Profile extends Component{
           numColumns={2}
           horizontal={false}
           data= { this.state.posteos }
+          
           keyExtractor = { post => post.id}
           renderItem = { ({item}) => <Post postData={item} />}
           // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
+          
         />
+        
+
         <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>

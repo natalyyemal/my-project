@@ -97,7 +97,11 @@ class Post extends Component{
                 </TouchableOpacity> :
                 <TouchableOpacity onPress={()=>this.quitarLike()}>
                     <Text>Quitar like</Text>
-                </TouchableOpacity>                       
+                </TouchableOpacity>   
+
+                // <TouchableOpacity style={styles.buttonBorrar} onPress={()=>this.borrarPosteo(item.id)}>
+                // <Text style={styles.touchableText}>Eliminar post</Text> 
+                // </TouchableOpacity>                    
             }
             {/* Ver modal */}
             <TouchableOpacity onPress={()=>this.showModal()}>
