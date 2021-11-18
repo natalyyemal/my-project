@@ -34,6 +34,12 @@ class Profile extends Component{
       }
     )
   }
+
+  borrarPost= (id)=> {
+    db.collection('posts').doc(id).delete();
+    this.showPost();
+  }
+
   render(){
     console.log(this.state.posteos);
     return(
