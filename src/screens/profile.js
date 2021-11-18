@@ -46,9 +46,9 @@ class Profile extends Component{
       <View style={styles.container}>
         <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
         <Text>Tenes {this.state.posteos.length} posteos hechos</Text>
-        
-       
-        <FlatList style={styles.image}
+
+       <View style={styles.ContainerGallery}>
+        <FlatList 
           numColumns={2}
           horizontal={false}
           data= { this.state.posteos }
@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
     container:{
       flex: 1,
       marginTop: 40,
+    },
+    ContainerGallery:{
+      flex: 1,
+      marginTop: 20,
+      marginHorizontal: 10,
     },
 
     welcome:{
