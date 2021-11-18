@@ -1,126 +1,149 @@
-import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import {db, auth } from '../firebase/config';
-import Post from '../components/Post';
+import React, { Component } from "react";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+  FlatList,
+  TextInput,
+} from "react-native";
+import { db, auth } from "../firebase/config";
+import Post from "../components/Post";
 
-class Profile extends Component{
-  constructor(props){
+class Profile extends Component {
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       posteos: [],
-    }
+    };
   }
-  componentDidMount(){
-    console.log('En didMount de Profile');
-    db.collection('posts')
-    .where('owner', '==', auth.currentUser.email)
-    .orderBy('createdAt', 'desc')
-    .onSnapshot(
-      docs => {
+  componentDidMount() {
+    console.log("En didMount de Profile");
+    db.collection("posts")
+      .where("owner", "==", auth.currentUser.email)
+      .orderBy("createdAt", "desc")
+      .onSnapshot((docs) => {
         console.log(docs);
         //Array para crear datos en formato más útil.
         let posts = [];
-        docs.forEach( doc => {
+        docs.forEach((doc) => {
           posts.push({
-            id: doc.id,   
+            id: doc.id,
             data: doc.data(),
-          })
-        })
+          });
+        });
         console.log(posts);
 
         this.setState({
           posteos: posts,
-        })
-      }
-    )
+        });
+      });
   }
 
   borrarPost= (id)=> {
-    db.collection('posts').doc(id).delete();
+    console.log('un id ' + id)
+    db.collection('posts').doc(id).delete().then(() => {
+      this.setState({posteos:this.state}) //borra todos
+    })
     // this.showPost();
   }
 
-  render(){
+  render() {
     console.log(this.state.posteos);
-    return(
-    <View style={styles.container}>
-        <Text style={styles.welcome}> Bienvenido: {this.props.userData.displayName}</Text>
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          {" "}
+          Bienvenido: {this.props.userData.displayName}
+        </Text>
         {/* <Text>Tenes {this.state.posteos.length} Cantidad de posteos hechos:</Text> */}
 
+        {this.state.posteos.length > 0 ? (
+          <View style={styles.ContainerGallery}>
+            <FlatList
+              numColumns={2}
+              horizontal={false}
+              data={this.state.posteos}
+              // la prop render item va a estar pasando un objeto literal con 3 propiedades.
+              renderItem={({ item }) => (
+                <View>
+                  <Post postData={item} />
 
-     {this.state.posteos.length > 0 ? (  
-       <View style={styles.ContainerGallery}>
-        <FlatList 
-          numColumns={2}
-          horizontal={false}
-          data= { this.state.posteos }
+                  <TouchableOpacity
+                    style={styles.touchable}
+                    onPress={() => this.borrarPost(item.id)}
+                  >
+                    <Text style={styles.touchableText}>Eliminar post</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              keyExtractor={(post) => post.id}
+            />
+          </View>
+        ) : (
+          <Text>Tenes {this.state.posteos.length} posteos hechos:</Text>
+        )}
 
-          // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
-          renderItem = { ({item}) => <> <Post postData={item}/>
-        
-            <TouchableOpacity style={styles.touchable} onPress={()=>this.borrarPost(item.id)}>
-                <Text style={styles.touchableText}>Eliminar post</Text> 
-            </TouchableOpacity>
-          </> 
-          }
-          keyExtractor = { post => post.id} 
-        />
+        <Text style={styles.element}>
+          {" "}
+          Usuario creado el: {this.props.userData.metadata.creationTime}
+        </Text>
+        <Text style={styles.element}>
+          {" "}
+          Último login: {this.props.userData.metadata.lastSignInTime}
+        </Text>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => this.props.logout()}
+        >
+          <Text style={styles.touchableText}>Logout</Text>
+        </TouchableOpacity>
       </View>
-     ):(
-      <Text>Tenes {this.state.posteos.length} posteos hechos:</Text>
-     )}
-
-
-
-        <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
-          <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
-          <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
-            <Text style={styles.touchableText}>Logout</Text> 
-          </TouchableOpacity>
-    </View>       
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
-    container:{
-      flex: 1,
-      marginTop: 40,
-    },
-    ContainerGallery:{
-      flex: 1,
-      marginTop: 20,
-      marginHorizontal: 10,
-    },
+  container: {
+    flex: 1,
+    marginTop: 40,
+  },
+  ContainerGallery: {
+    flex: 1,
+    marginTop: 20,
+    marginHorizontal: 10,
+    flexDirection: 'column',
+    flexWrap: 'wrap'
+  },
 
-    welcome:{
-        fontSize:18,
-        marginTop:20,
-        marginBottom:30,
-        fontWeight: 'bold'
-    },
-    element:{
-        marginBottom:10,
-    },
-    touchable:{
-        padding: 10,
-        backgroundColor: '#dc3545',
-        marginTop: 30,
-        borderRadius: 4,
-    },
-    touchableText:{
-        fontWeight: 'bold',
-        color:'#fff',
-        textAlign: 'center'
-    },
-    image:{
-      flex: 1,
-      padding: '0%',
-      width: '100%',
-      numColumns:3,
-
-    }
-    
+  welcome: {
+    fontSize: 18,
+    marginTop: 20,
+    marginBottom: 30,
+    fontWeight: "bold",
+  },
+  element: {
+    marginBottom: 10,
+  },
+  touchable: {
+    padding: 10,
+    backgroundColor: "#dc3545",
+    marginTop: 30,
+    borderRadius: 4,
+  },
+  touchableText: {
+    fontWeight: "bold",
+    color: "#fff",
+    textAlign: "center",
+  },
+  image: {
+    flex: 1,
+    padding: "0%",
+    width: "100%",
+    numColumns: 3,
+  },
 });
 
 export default Profile;
