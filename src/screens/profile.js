@@ -47,17 +47,14 @@ class Profile extends Component {
     db.collection('posts').doc(id).delete().then(() => {
       this.setState({posteos:this.state}) //borra todos
     })
-    // this.showPost();
+    
   }
 
   render() {
     console.log(this.state.posteos);
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {" "}
-          Bienvenido: {this.props.userData.displayName}
-        </Text>
+        <Text style={styles.welcome}>Bienvenid@ a tu perfil {this.props.userData.displayName} </Text>
         {/* <Text>Tenes {this.state.posteos.length} Cantidad de posteos hechos:</Text> */}
 
         {this.state.posteos.length > 0 ? (
@@ -67,8 +64,10 @@ class Profile extends Component {
               horizontal={false}
               data={this.state.posteos}
               // la prop render item va a estar pasando un objeto literal con 3 propiedades.
+
+
               renderItem={({ item }) => (
-                <View>
+                <View style={styles.profilePost}>
                   <Post postData={item} />
 
                   <TouchableOpacity
@@ -112,12 +111,14 @@ const styles = StyleSheet.create({
   },
   ContainerGallery: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 10,
     marginHorizontal: 10,
     flexDirection: 'column',
     flexWrap: 'wrap'
   },
-
+  profilePost:{
+    width: '50%'
+  },
   welcome: {
     fontSize: 18,
     marginTop: 20,
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
     width: "100%",
     numColumns: 3,
   },
+  
 });
 
 export default Profile;
