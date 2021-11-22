@@ -85,10 +85,22 @@ class Post extends Component {
         });
       });
   }
+  deletePost() {
+
+    db.collection("posts").doc(this.props.postData.id).delete()
+      .then(() => {
+          console.log("eliminado");
+      })
+    }
+
+  
+
   render() {
     console.log(this.props.postData);
     return (
       <View style={styles.contanier}>
+
+          
         <Image
           source={{ uri: this.props.postData.data.photo }}
           style={styles.image}
@@ -110,6 +122,17 @@ class Post extends Component {
         <TouchableOpacity onPress={() => this.showModal()}>
           <Text>Ver Comentarios</Text>
         </TouchableOpacity>
+
+        {/* borrar  */}
+        
+        {this.props.postData.data.owner == auth.currentUser.email ? (
+                <TouchableOpacity style={styles.touchable} 
+                    onPress={(id)=>this.deletePost(this.props.postData.id)}>
+                    <Text> Eliminar post </Text>
+                </TouchableOpacity>
+                ):
+                    null
+        }
 
         {/* Modal para comentarios */}
         {this.state.showModal ? (
@@ -151,6 +174,10 @@ class Post extends Component {
               >
                 <Text style={styles.textButton}>Guadar comentario</Text>
               </TouchableOpacity>
+
+              
+                
+                  
             </View>
           </Modal>
         ) : (
@@ -208,6 +235,12 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "#28a745",
   },
+  touchable: {
+    padding: 10,
+    backgroundColor: "#dc3545",
+    marginTop: 30,
+    borderRadius: 4,
+  },
   textButton: {
     color: "#fff",
   },
@@ -217,6 +250,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginBottom: 10,
   },
+  
 });
 
 export default Post;

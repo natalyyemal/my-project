@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  Image,
-  ActivityIndicator,
-  FlatList,
-  TextInput,
-} from "react-native";
+import {Text, TouchableOpacity,View,StyleSheet,Image,ActivityIndicator,FlatList,TextInput} from "react-native";
 import { db, auth } from "../firebase/config";
 import Post from "../components/Post";
 
@@ -42,13 +33,20 @@ class Profile extends Component {
       });
   }
 
-  borrarPost= (id)=> {
-    console.log('un id ' + id)
-    db.collection('posts').doc(id).delete().then(() => {
-      this.setState({posteos:this.state}) //borra todos
-    })
+  // borrarPost() {
+
+  //   db.collection('posts').doc(this.props.postData.id).delete().then(() => {
+  //     this.setState({posteos:this.posteos})
+  // }
+  // )}
+
+  // borrarPost= ()=> {
+  //   // console.log('un id ' + id)
+  //   db.collection('posts').doc(this.props.postData.id).delete().then(() => {
+  //     this.setState({posteos:this.state.posteos}) //borra todos
+  //   })
     
-  }
+  // }
 
   render() {
     console.log(this.state.posteos);
@@ -65,20 +63,27 @@ class Profile extends Component {
               data={this.state.posteos}
               // la prop render item va a estar pasando un objeto literal con 3 propiedades.
 
-
+              keyExtractor={(post) => post.id}
               renderItem={({ item }) => (
                 <View style={styles.profilePost}>
                   <Post postData={item} />
 
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     style={styles.touchable}
-                    onPress={() => this.borrarPost(item.id)}
+                    onPress={() => this.borrarPost()}
                   >
                     <Text style={styles.touchableText}>Eliminar post</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
+                  {/* <TouchableOpacity
+                    style={styles.touchable}
+                    onPress={() => this.borrarPost()}
+                    > 
+                <Text style={styles.touchableText}>Eliminar post</Text>
+                  </TouchableOpacity> */}
+
                 </View>
               )}
-              keyExtractor={(post) => post.id}
+              
             />
           </View>
         ) : (
