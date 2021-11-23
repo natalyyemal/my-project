@@ -14,7 +14,7 @@ class Profile extends Component {
     console.log("En didMount de Profile");
     db.collection("posts")
       .where("owner", "==", auth.currentUser.email)
-      .orderBy("createdAt", "desc")
+      // .orderBy("createdAt", "desc")
       .onSnapshot((docs) => {
         console.log(docs);
         //Array para crear datos en formato más útil.
@@ -33,20 +33,6 @@ class Profile extends Component {
       });
   }
 
-  // borrarPost() {
-
-  //   db.collection('posts').doc(this.props.postData.id).delete().then(() => {
-  //     this.setState({posteos:this.posteos})
-  // }
-  // )}
-
-  // borrarPost= ()=> {
-  //   // console.log('un id ' + id)
-  //   db.collection('posts').doc(this.props.postData.id).delete().then(() => {
-  //     this.setState({posteos:this.state.posteos}) //borra todos
-  //   })
-    
-  // }
 
   render() {
     console.log(this.state.posteos);

@@ -86,14 +86,15 @@ class Post extends Component {
       });
   }
   deletePost() {
-
-    db.collection("posts").doc(this.props.postData.id).delete()
+    let borrar = confirm("Se va a borrar tu posteo")
+    if(borrar){
+      db.collection("posts").doc(this.props.postData.id).delete()
       .then(() => {
           console.log("eliminado");
       })
     }
+  }
 
-  
 
   render() {
     console.log(this.props.postData);
@@ -146,7 +147,8 @@ class Post extends Component {
               <Text style={styles.closeButton}>X</Text>
             </TouchableOpacity>
 
-            <FlatList
+{this.props.postData.data.comments ?
+        <FlatList
               data={this.props.postData.data.comments}
               keyExtractor={(comment) => comment.createdAt.toString()}
               renderItem={({ item }) => (
@@ -155,7 +157,10 @@ class Post extends Component {
                 </Text>
               )}
             />
-
+      :
+    <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
+}
+            
             {/* Formulario para nuevo comentarios */}
             <View>
               <TextInput
@@ -167,6 +172,7 @@ class Post extends Component {
                 value={this.state.comment}
               />
               <TouchableOpacity
+                disabled={this.state.comment ? false: true}
                 style={styles.button}
                 onPress={() => {
                   this.guardarComentario();

@@ -31,6 +31,8 @@ class Login extends Component{
                 <Text style={styles.error}>{this.props.error}</Text>
 
                 <TouchableOpacity
+                    disabled={this.state.email && this.state.password ? false : true} 
+                    // style={styles.button}
                     style={[styles.button, this.state.email && this.state.password ? styles.buttonEnabled : styles.buttonDisabled]}
                     onPress={() => this.props.login(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}> Ingresar</Text>
@@ -75,11 +77,11 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     buttonEnabled: {
-        backgroundColor: '#00ADB5',
+        backgroundColor: '#28a745',
     },
     buttonDisabled: {
         backgroundColor: '#D3D3D3',
-        display: 'none',
+        borderColor: '#D3D3D3',
     },
 })
 

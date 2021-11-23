@@ -24,6 +24,7 @@ class PostForm extends Component{
         .then( ()=>{ //Limpiar el form de carga
             this.setState({
                 textoPost:'',
+                showCamera: true,
             })
             //Redirección
             this.props.drawerProps.navigation.navigate('Home')

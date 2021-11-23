@@ -14,9 +14,6 @@ class Search extends Component{
         };
     }
 
-    componentDidUpdate(){
-        this.todosLosPosteos();
-    }
 
     todosLosPosteos(){
         
@@ -28,11 +25,12 @@ class Search extends Component{
                       id:doc.id,
                       data:doc.data()
                   })
-                  this.setState({
-                      posteos: posts,
-                      buscando: true,
-                  })
+                  
               })
+              this.setState({
+                posteos: posts,
+                buscando: true,
+            })
           }  
         )
     }
@@ -48,31 +46,37 @@ class Search extends Component{
                 
                />
 
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.todosLosPosteos()}
+                >
+                    <Text style={styles.textButton}>Buscar</Text>
+                </TouchableOpacity>
+
+
             { this.state.buscando ? (
-                // NO ME ANDA
-                this.state.posteos.length === 0 ? (
-                  <Text style={styles.info}>No hay resultados, sigue buscando para un email existente</Text>
-                ) : (
-                    <Text style={styles.info}>Resultados para tu búsqueda: </Text>
-                  )
-              ) : (
+                this.state.posteos.length == 0 ? (
+                    <Text style={styles.info}>No hay resultados, sigue buscando para un email existente</Text>
+                  ) : (
+                      <Text style={styles.info}>Resultados para tu búsqueda: </Text>
+                    )
+            )
+                 : (
                   null
                 )
             }
 
-        
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={post => post.id}
                 renderItem={({item}) => <Post postData={item} />}
             />
 
-
-         
             </View>
         )
     }
 }
+
 
 
 const styles = StyleSheet.create({
@@ -108,6 +112,16 @@ const styles = StyleSheet.create({
     alignItems:"center",
     paddingBottom: '2%',
     paddingTop: '2%',
+    },
+    button:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
     },
 })
 
