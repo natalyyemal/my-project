@@ -100,31 +100,31 @@ class Post extends Component {
     return (
       <View style={styles.contanier}>
 
-          
+        <Text style={styles.textoPost}>Usuario: {this.props.postData.data.owner} </Text>    
         <Image
           source={{ uri: this.props.postData.data.photo }}
           style={styles.image}
         />
-        <Text>Texto del post: {this.props.postData.data.texto}</Text>
-        <Text>user: {this.props.postData.data.owner} </Text>
-        <Text>Likes: {this.state.likes} </Text>
+        <Text style={styles.textoPost}>Texto del post: {this.props.postData.data.texto}</Text>
+        
+        <Text style={styles.textoPost}>Likes: {this.state.likes} </Text>
         {/* Cambio de botones me gusta/ me dejó de gustar */}
         {this.state.myLike == false ? (
           <TouchableOpacity onPress={() => this.darLike()}>
-            <Text>Me gusta</Text>
+            <Text style={styles.textoPost}>Me gusta</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => this.quitarLike()}>
-            <Text>Quitar like</Text>
+            <Text style={styles.textoPost}>Quitar like</Text>
           </TouchableOpacity>
         )}
         {/* Ver modal */}
         <TouchableOpacity onPress={() => this.showModal()}>
-          <Text>Ver Comentarios</Text>
+          <Text style={styles.textoPost}>Clickea para los comentarios</Text>
         </TouchableOpacity>
 
         {/* borrar  */}
-        
+
         {this.props.postData.data.owner == auth.currentUser.email ? (
                 <TouchableOpacity style={styles.touchable} 
                     onPress={(id)=>this.deletePost(this.props.postData.id)}>
@@ -191,16 +191,20 @@ class Post extends Component {
 const styles = StyleSheet.create({
   contanier: {
     marginBottom: 20,
-    borderRadius: 4,
+    borderRadius: 6,
     borderColor: "#ccc",
     borderWidth: 1,
     padding: 10,
+    backgroundColor:`#d3d3d3`,
   },
   modalContainer: {
     width: "97%",
     borderRadius: 4,
     padding: 5,
-    backgroundColor: "#fff",
+    // backgroundColor:`#696969`,
+    // backgroundColor: "#fff",
+    // backgroundColor:`#f8f8ff`,
+    backgroundColor:`#d3d3d3`,
     justifyContent: "center",
     alignSelf: "center",
     boxShadow: "rgb(204 204 204 ) 0px 0px 9px 7px #ccc",
@@ -247,10 +251,13 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    borderRadius: 4,
+    borderRadius: 7,
     marginBottom: 10,
   },
-  
+  textoPost: {
+    color: `#000000`,
+    padding: "1%",
+  },
 });
 
 export default Post;

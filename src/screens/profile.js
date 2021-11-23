@@ -89,21 +89,20 @@ class Profile extends Component {
         ) : (
           <Text>Tenes {this.state.posteos.length} posteos hechos:</Text>
         )}
+      <View style={styles.infoPersona}>
+        <Text style={styles.element}>Email: {auth.currentUser.email}</Text>
+        <Text style={styles.element}>Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
+        <Text style={styles.element}>Último login: {this.props.userData.metadata.lastSignInTime}</Text>
 
-        <Text style={styles.element}>
-          {" "}
-          Usuario creado el: {this.props.userData.metadata.creationTime}
-        </Text>
-        <Text style={styles.element}>
-          {" "}
-          Último login: {this.props.userData.metadata.lastSignInTime}
-        </Text>
         <TouchableOpacity
           style={styles.touchable}
           onPress={() => this.props.logout()}
         >
           <Text style={styles.touchableText}>Logout</Text>
         </TouchableOpacity>
+
+      </View>
+
       </View>
     );
   }
@@ -112,7 +111,7 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 20,
   },
   ContainerGallery: {
     flex: 1,
@@ -122,21 +121,26 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   profilePost:{
-    width: '50%'
+    width: '49%',
+    // alignItems: "c"
+    paddingLeft: '0.5%',
+    paddingRight: '0.5%',
   },
   welcome: {
-    fontSize: 18,
-    marginTop: 20,
-    marginBottom: 30,
+    fontSize: 16,
+    marginTop: 5,
+    marginBottom: 5,
     fontWeight: "bold",
   },
   element: {
     marginBottom: 10,
+    // fontWeight: 'bold',
+    // textDecorationLine: 'underline',
   },
   touchable: {
     padding: 10,
     backgroundColor: "#dc3545",
-    marginTop: 30,
+    marginTop: 20,
     borderRadius: 4,
   },
   touchableText: {
@@ -150,7 +154,15 @@ const styles = StyleSheet.create({
     width: "100%",
     numColumns: 3,
   },
-  
+  infoPersona: {
+    display:"flex", 
+    flexDirection: "column",
+    // flex: 4,
+    justifyContent: "center",
+    alignItems:"center",
+    paddingBottom: '2%',
+    paddingTop: '2%', 
+  }
 });
 
 export default Profile;
