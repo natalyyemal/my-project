@@ -8,7 +8,6 @@ class Profile extends Component {
     super(props);
     this.state = {
       posteos: [],
-      displayName: "",
     };
   }
   componentDidMount() {
