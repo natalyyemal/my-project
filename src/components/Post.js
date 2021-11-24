@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import {Text,View,StyleSheet,TouchableOpacity,Modal,TextInput,Image} from "react-native";
+import {Text,View,StyleSheet,TouchableOpacity,Modal,TextInput,Image, FlatList} from "react-native";
 import { db, auth } from "../firebase/config";
 import firebase from "firebase";
-import { FlatList } from "react-native-gesture-handler";
 
 class Post extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class Post extends Component {
       })
       .then(() => {
         this.setState({
-          likes: this.props.postData.data.likes.length,
+          likes: this.props.postData.data.likes.length, 
           //likes:this.state.likes + 1, //Opción más rápida de respuesta
           myLike: true,
         });
