@@ -33,7 +33,7 @@ class Post extends Component {
       })
       .then(() => {
         this.setState({
-          likes: this.props.postData.data.likes.length,
+          likes: this.props.postData.data.likes.length, 
           //likes:this.state.likes + 1, //Opción más rápida de respuesta
           myLike: true,
         });
