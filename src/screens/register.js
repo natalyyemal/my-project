@@ -30,7 +30,6 @@ class Register extends Component{
                     placeholder='password'
                     secureTextEntry={true}
                     keyboardType='email-address'
-                    secureTextEntry={true}
                 />
                 <Text style={styles.error}>{this.props.error}</Text>
                 <TouchableOpacity

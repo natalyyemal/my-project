@@ -59,6 +59,12 @@ class MyCamera extends Component {
             .catch((err) => console.log(err));
     }
 
+    cancelPhoto(){
+        this.setState({
+            photo: ""
+        })
+    }
+
 render() {
     return (
         <>
@@ -72,7 +78,7 @@ render() {
                         <TouchableOpacity onPress={() => this.savePhoto()}>
                             <Text>Aceptar</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.cancelPhoto()}>
                             <Text>Cancelar</Text>
                         </TouchableOpacity>
                     </View>

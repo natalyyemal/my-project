@@ -54,18 +54,7 @@ class Profile extends Component {
                 <View style={styles.profilePost}>
                   <Post postData={item} />
 
-                  {/* <TouchableOpacity
-                    style={styles.touchable}
-                    onPress={() => this.borrarPost()}
-                  >
-                    <Text style={styles.touchableText}>Eliminar post</Text>
-                  </TouchableOpacity> */}
-                  {/* <TouchableOpacity
-                    style={styles.touchable}
-                    onPress={() => this.borrarPost()}
-                    > 
-                <Text style={styles.touchableText}>Eliminar post</Text>
-                  </TouchableOpacity> */}
+                
 
                 </View>
               )}
@@ -73,10 +62,13 @@ class Profile extends Component {
             />
           </View>
         ) : (
-          <Text>Tenes {this.state.posteos.length} posteos hechos:</Text>
+          null
         )}
+
+
       <View style={styles.infoPersona}>
         <Text style={styles.element}>Email: {auth.currentUser.email}</Text>
+        <Text>Tenes {this.state.posteos.length} posteos hechos</Text>
         <Text style={styles.element}>Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
         <Text style={styles.element}>Último login: {this.props.userData.metadata.lastSignInTime}</Text>
 

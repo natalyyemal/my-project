@@ -119,10 +119,18 @@ class Post extends Component {
             <Text style={styles.textoPost}>Quitar like</Text>
           </TouchableOpacity>
         )}
+        
         {/* Ver modal */}
-        <TouchableOpacity onPress={() => this.showModal()}>
-          <Text style={styles.textoPost}>Clickea para los comentarios</Text>
-        </TouchableOpacity>
+        {this.props.postData.data.comments ? 
+          <TouchableOpacity onPress={() => this.showModal()}>
+            <Text style={styles.textoPost}>Clickea para ver los {this.props.postData.data.comments.length} comentarios</Text>
+          </TouchableOpacity> 
+          :
+          <TouchableOpacity onPress={() => this.showModal()}>
+            <Text style={styles.textoPost}>Clickea para comentar</Text>
+          </TouchableOpacity> 
+        }
+        
 
         {/* borrar  */}
 

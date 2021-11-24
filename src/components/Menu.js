@@ -31,7 +31,7 @@ class Menu extends Component{
     }
     
     componentDidMount(){ //para ver si esta logueado
-        auth.onAuthStateChanged(user => { // para ver si esta logueado
+        auth.onAuthStateChanged(user => { // hya un usuario logueado o no
             if(!user){
                 this.setState({
                     loggedIn:false,
@@ -46,7 +46,7 @@ class Menu extends Component{
         })
     }
 
-    register(email, pass, username){
+    register(email, pass, username){ 
         auth.createUserWithEmailAndPassword(email, pass)
             .then( (response)=>{
                 response.user.updateProfile({
@@ -97,7 +97,8 @@ class Menu extends Component{
             return(
             <NavigationContainer>
             {this.state.loggedIn == false ?
-                <Drawer.Navigator>
+                <Drawer.Navigator> 
+                    {/* tipo de navegador */}
                     <Drawer.Screen name="Registro" component={()=><Register register={(email, pass, username)=>this.register(email, pass, username)} error= {this.state.mensajeError} />} />
                     <Drawer.Screen name="Login" component={()=><Login login={(email, pass)=>this.login(email, pass)} error= {this.state.mensajeError} />}/>
                 </Drawer.Navigator> :

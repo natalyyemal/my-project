@@ -25,7 +25,7 @@ class Login extends Component{
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='password'
-                    keyboardType='email-address'
+                    keyboardType='default'
                     secureTextEntry={true}
                 />
                 <Text style={styles.error}>{this.props.error}</Text>
