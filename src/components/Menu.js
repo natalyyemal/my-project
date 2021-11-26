@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator} from '@react-navigation/drawer';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
  
-
 import Home from '../screens/home';
 import Register from '../screens/register';
 import Login from '../screens/login';
@@ -14,6 +11,8 @@ import PostForm from '../screens/postForm';
 import Search from '../screens/search';
 import { auth } from '../firebase/config';
 import { Text, View } from 'react-native';
+
+
 
 
 const Drawer = createDrawerNavigator();
@@ -53,7 +52,7 @@ class Menu extends Component{
                 })
             })
             .catch( error => {
-                // <Text>Esta mal: {error} </Text>
+
                 console.log(error);
                 this.setState({
                     mensajeError: error.message,
@@ -71,7 +70,7 @@ class Menu extends Component{
                 })
             })
             .catch( e => {
-                // <Text>Esta mal: {error} </Text>
+               
                 console.log(e);
                 this.setState({
                     mensajeError: e.message,
@@ -116,5 +115,6 @@ class Menu extends Component{
     }
 
 }
+
 
 export default Menu;
