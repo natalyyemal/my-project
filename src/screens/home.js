@@ -43,7 +43,7 @@ class Home extends Component{
         <FlatList 
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />} // la prop render item va a estar pasando un objeto literal con 3 propiedades. 
+          renderItem = { ({item}) => <Post postData={item} />} 
         />
       </View>
       )

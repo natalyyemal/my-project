@@ -32,7 +32,6 @@ class Login extends Component{
 
                 <TouchableOpacity
                     disabled={this.state.email && this.state.password ? false : true} 
-                    // style={styles.button}
                     style={[styles.button, this.state.email && this.state.password ? styles.buttonEnabled : styles.buttonDisabled]}
                     onPress={() => this.props.login(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}> Ingresar</Text>

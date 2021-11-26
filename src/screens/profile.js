@@ -14,7 +14,6 @@ class Profile extends Component {
     console.log("En didMount de Profile");
     db.collection("posts")
       .where("owner", "==", auth.currentUser.email)
-      // .orderBy("createdAt", "desc")
       .onSnapshot((docs) => {
         console.log(docs);
         //Array para crear datos en formato más útil.

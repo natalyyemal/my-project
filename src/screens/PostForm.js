@@ -88,11 +88,6 @@ const styles = StyleSheet.create({
     textButton:{
         color: '#fff'
     },
-    // camara:{
-    //     paddingLeft:'1%',
-    //     paddingRight:'1%',
-    //     height: 12,
-    // }
 })
 
 export default PostForm;
