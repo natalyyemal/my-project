@@ -24,16 +24,13 @@ class MyCamera extends Component {
         .catch((err)=> console.log(err));
         
 
-    // Camera.getAvailableCameraTypesAsync().then((res)=> console.log(res));
     }   
 
     takePicture() {
-        //cuando se ejecuta este metodo devuelve una promesa
         this.camera.takePictureAsync()
             .then((photo) => {
                 console.log(photo);
                 this.setState({
-                    //uri es donde se almacena la foto, nosotros no lo vemos
                     photo: photo.uri,
                 });
             })
@@ -41,7 +38,6 @@ class MyCamera extends Component {
     }
 
     savePhoto() {
-        //console.log("guardar foto en firebase");
         fetch(this.state.photo)
             .then((res) => res.blob())
             .then((image) => {

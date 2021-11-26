@@ -17,7 +17,6 @@ import { Text, View } from 'react-native';
 
 
 const Drawer = createDrawerNavigator();
-// const Tab = createBottomTabNavigator();
 
 class Menu extends Component{
     constructor(props){
@@ -30,8 +29,8 @@ class Menu extends Component{
         }
     }
     
-    componentDidMount(){ //para ver si esta logueado
-        auth.onAuthStateChanged(user => { // hya un usuario logueado o no
+    componentDidMount(){ 
+        auth.onAuthStateChanged(user => { 
             if(!user){
                 this.setState({
                     loggedIn:false,
