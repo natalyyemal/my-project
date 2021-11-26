@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
 import Post from '../components/Post';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-
-// const Tab = createBottomTabNavigator();
 
 class Home extends Component{
   constructor(props){
@@ -20,7 +17,7 @@ class Home extends Component{
     .onSnapshot(
       docs => {
         console.log(docs);
-        //Array para crear datos en formato más útil.
+  
         let posts = [];
         docs.forEach( doc => {
           posts.push({
