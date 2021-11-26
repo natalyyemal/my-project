@@ -34,7 +34,6 @@ class Register extends Component{
                 <Text style={styles.error}>{this.props.error}</Text>
                 <TouchableOpacity
                     disabled={this.state.email && this.state.password ? false: true}
-                    // style={styles.button}
                     style={[styles.button, this.state.email && this.state.password && this.state.username ? styles.buttonEnabled : styles.buttonDisabled]}
                     onPress={() => this.props.register(this.state.email, this.state.password, this.state.username)}
                 >
@@ -86,5 +85,6 @@ const styles = StyleSheet.create({
         borderColor: '#D3D3D3',
     },
 })
+
 
 export default Register;

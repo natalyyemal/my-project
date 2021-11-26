@@ -119,17 +119,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 4,
   },
+
   touchableText: {
     fontWeight: "bold",
     color: "#fff",
     textAlign: "center",
   },
+
   image: {
     flex: 1,
     padding: "0%",
     width: "100%",
     numColumns: 3,
   },
+
   infoPersona: {
     display:"flex", 
     flexDirection: "column",
@@ -140,5 +143,6 @@ const styles = StyleSheet.create({
     paddingTop: '2%', 
   }
 });
+
 
 export default Profile;

@@ -21,12 +21,12 @@ class PostForm extends Component{
             createdAt: Date.now(),
             photo: this.state.url,
         })
-        .then( ()=>{ //Limpiar el form de carga
+        .then( ()=>{ 
             this.setState({
                 textoPost:'',
                 showCamera: true,
             })
-            //Redirección
+           
             this.props.drawerProps.navigation.navigate('Home')
         })
         .catch()
@@ -52,6 +52,7 @@ class PostForm extends Component{
                     multiline
                     value={this.state.textoPost}    
                     />
+
                 <TouchableOpacity style={styles.button} onPress={()=>this.submitPost()}>
                     <Text style={styles.textButton}>Guardar</Text>    
                 </TouchableOpacity>
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         marginTop: 20,
     },
+
     input:{
         height:100,
         paddingVertical:15,
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical:10,
     },
+
     button:{
         backgroundColor:'#28a745',
         paddingHorizontal: 10,
@@ -85,6 +88,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#28a745'
     },
+    
     textButton:{
         color: '#fff'
     },
