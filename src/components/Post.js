@@ -9,8 +9,8 @@ class Post extends Component {
     this.state = {
       likes: 0,
       myLike: false,
-      showModal: false, //Para la vista del modal
-      comment: "", //para limpiar el campo después de enviar.
+      showModal: false, 
+      comment: "", 
     };
   }
   componentDidMount() {
@@ -23,8 +23,7 @@ class Post extends Component {
   }
 
   darLike() {
-    //Agregar mi usuario a un array de usuario que likearon.
-    //Updatear el registro (documento)
+    
     db.collection("posts")
       .doc(this.props.postData.id)
       .update({
@@ -33,7 +32,6 @@ class Post extends Component {
       .then(() => {
         this.setState({
           likes: this.props.postData.data.likes.length, 
-          //likes:this.state.likes + 1, //Opción más rápida de respuesta
           myLike: true,
         });
       });
