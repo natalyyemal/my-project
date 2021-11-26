@@ -80,16 +80,13 @@ class Search extends Component{
 
 
 const styles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     backgroundColor: 'white',
-    // },
+    
     formContainer: {
         height: '100px',
         marginTop: 30,
         marginBottom: 30,
         flex: 1,
-        // flexDirection: "row",
+       
         width: "200px%",
         paddingHorizontal:10,
         marginTop: 20,

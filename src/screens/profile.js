@@ -16,7 +16,7 @@ class Profile extends Component {
       .where("owner", "==", auth.currentUser.email)
       .onSnapshot((docs) => {
         console.log(docs);
-        //Array para crear datos en formato más útil.
+       
         let posts = [];
         docs.forEach((doc) => {
           posts.push({
@@ -46,7 +46,7 @@ class Profile extends Component {
               numColumns={2}
               horizontal={false}
               data={this.state.posteos}
-              // la prop render item va a estar pasando un objeto literal con 3 propiedades.
+              
 
               keyExtractor={(post) => post.id}
               renderItem={({ item }) => (
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   profilePost:{
     width: '49%',
-    // alignItems: "c"
+  
     paddingLeft: '0.5%',
     paddingRight: '0.5%',
   },
@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
   },
   element: {
     marginBottom: 10,
-    // fontWeight: 'bold',
-    // textDecorationLine: 'underline',
+   
   },
   touchable: {
     padding: 10,
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
   infoPersona: {
     display:"flex", 
     flexDirection: "column",
-    // flex: 4,
+   
     justifyContent: "center",
     alignItems:"center",
     paddingBottom: '2%',
