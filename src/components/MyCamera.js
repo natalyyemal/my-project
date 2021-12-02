@@ -11,7 +11,7 @@ class MyCamera extends Component {
             permission: false,
             photo: "",
         };
-        this.camera;
+        this.camera; //le avisa al sistema que estas usando esta camara
     }
 
      componentDidMount(){
@@ -41,7 +41,7 @@ class MyCamera extends Component {
         fetch(this.state.photo)
             .then((res) => res.blob())
             .then((image) => {
-                const ref = storage.ref(`photos/${Date.now()}.jpg`);
+                const ref = storage.ref(`photos/${Date.now()}.jpg`); //ruta interna de firebase
                 ref.put(image).then(() => {
                     ref.getDownloadURL()
                     .then((url) => {

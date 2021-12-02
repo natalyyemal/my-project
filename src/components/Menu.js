@@ -46,7 +46,7 @@ class Menu extends Component{
 
     register(email, pass, username){ 
         auth.createUserWithEmailAndPassword(email, pass)
-            .then( (response)=>{
+            .then( (response)=>{ //response tiene un obejto literal con los datos del usuario
                 response.user.updateProfile({
                     displayName: username,
                 })
@@ -84,7 +84,7 @@ class Menu extends Component{
         auth.signOut()
             .then( (res)=>{
                 this.setState({
-                    user:'',
+                    user:'', //vacio porque volves al estado inicial
                     loggedIn: false,
                 })
             })

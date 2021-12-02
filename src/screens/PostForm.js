@@ -16,7 +16,7 @@ class PostForm extends Component{
     submitPost(){
         console.log('posteando...');
         db.collection('posts').add({
-            owner: auth.currentUser.email,
+            owner: auth.currentUser.email, //autenticacion del ususario
             texto: this.state.textoPost,
             createdAt: Date.now(),
             photo: this.state.url,
@@ -27,7 +27,7 @@ class PostForm extends Component{
                 showCamera: true,
             })
            
-            this.props.drawerProps.navigation.navigate('Home')
+            this.props.drawerProps.navigation.navigate('Home') //te redirige al home despues que un usuario saque una foto. para que el proximo saque otra
         })
         .catch()
     }
@@ -41,7 +41,7 @@ class PostForm extends Component{
     render(){
         return(
             this.state.showCamera ? (
-                <MyCamera onImageUpload={(url)=> this.onImageUpload(url)}/>
+                <MyCamera onImageUpload={(url)=> this.onImageUpload(url)}/> // te devuelve como praramentro la url de la foto
             ) : (
             <View style={styles.formContainer}>
                 <TextInput
